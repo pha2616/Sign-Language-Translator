@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/frameLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_margin="6dp"
+        android:padding="6dp"
+        android:background="@drawable/layout_background">
+        <Button
+            android:id="@+id/translate_btn"
+            android:layout_width="160dp"
+            android:layout_height="90dp"
+            android:background="#00ff0000"
+            android:paddingLeft="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="수화 번역 서비스"
+             />
+
+        <Button
+            android:id="@+id/dictionary_btn"
+            android:layout_width="160dp"
+            android:layout_height="90dp"
+            android:layout_toRightOf="@+id/translate_btn"
+            android:background="#00ff0000"
+            android:paddingLeft="20dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="수화 사전"
+            />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/translate_btn"
+            android:orientation="vertical"
+
+            >
+
+            <Button
+                android:id="@+id/manual_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp"
+                android:text="사용 설명서"
+                android:textColor="@color/black"
+                android:background="@drawable/qr_background"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

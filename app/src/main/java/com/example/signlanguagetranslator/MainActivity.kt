@@ -12,7 +12,9 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId){
             R.id.action_home ->{
-
+                var homeFragment = HomeFragment()
+                homeFragment.arguments = bundle
+                supportFragmentManager.beginTransaction().replace(R.id.main_content,homeFragment).commit()
                 return true
             }
             R.id.action_search ->{
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        replaceFragment(HomeFragment())
     }
 
     private fun replaceFragment(fragment: Fragment){
