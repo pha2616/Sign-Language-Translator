@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="home_or_school">
+        <item>등교</item>
+        <item>하교</item>
+    </string-array>
+
+    <string-array name="city_array">
+        <item>사랑</item>
+        <item>새</item>
+        <item>색칠</item>
+        <item>승차</item>
+        <item>안경</item>
+        <item>안녕</item>
+        <item>안녕하세요</item>
+        <item>암막</item>
+        <item>알아요</item>
+        <item>인정</item>
+        <item>인위</item>
+        <item>장난</item>
+        <item>좋아요</item>
+        <item>키위</item>
+        <item>Hello</item>
+        <item>Hi</item>
+    </string-array>
+
+    <string-array name="time_to_school">
+        <item>08:00</item>
+    </string-array>
+
+    <string-array name="time_to_home_sincheon">
+        <item>17:30</item>
+        <item>18:30</item>
+        <item>21:30</item>
+        <item>22:40</item>
+    </string-array>
+
+    <string-array name="time_to_home_gangnam">
+        <item>18:30</item>
+        <item>22:40</item>
+    </string-array>
+
+    <string-array name="time_to_home_etc">
+        <item>18:30</item>
+        <item>21:30</item>
+        <item>22:40</item>
+    </string-array>
+
+    <string-array name="time_to_home_ilsan">
+        <item>17:30</item>
+        <item>18:30</item>
+        <item>19:30</item>
+        <item>20:30</item>
+        <item>21:30</item>
+        <item>22:40</item>
+    </string-array>
+</resources>
