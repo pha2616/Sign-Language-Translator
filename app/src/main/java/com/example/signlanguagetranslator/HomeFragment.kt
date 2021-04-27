@@ -13,21 +13,19 @@ class HomeFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = LayoutInflater.from(activity).inflate(R.layout.fragment_home,container,false)
 
-        var timetable_btn: Button = view.findViewById(R.id.translate_btn)
-        var reservation_btn: Button = view.findViewById(R.id.dictionary_btn)
-        var qr_btn: Button = view.findViewById(R.id.manual_btn)
+        var translate_btn: Button = view.findViewById(R.id.translate_btn)
+        var dictionary_btn: Button = view.findViewById(R.id.dictionary_btn)
+        var manual_btn: Button = view.findViewById(R.id.manual_btn)
 
-        bundle.putString("nickname",arguments!!.getString("nickname"))
-
-        timetable_btn.setOnClickListener {
+        translate_btn.setOnClickListener {
 
         }
 
-        reservation_btn.setOnClickListener {
-
+        dictionary_btn.setOnClickListener {
+            replaceFragment(DictionaryFragment())
         }
 
-        qr_btn.setOnClickListener {
+        manual_btn.setOnClickListener {
 
         }
 
