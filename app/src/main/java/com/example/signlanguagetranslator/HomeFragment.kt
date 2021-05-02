@@ -18,7 +18,7 @@ class HomeFragment: Fragment() {
         var manual_btn: Button = view.findViewById(R.id.manual_btn)
 
         translate_btn.setOnClickListener {
-
+            replaceFragment(STTFragment())
         }
 
         dictionary_btn.setOnClickListener {
