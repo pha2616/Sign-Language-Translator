@@ -32,7 +32,7 @@ class SearchAdapter(list: List<SearchList>, context: Context): BaseAdapter() {
         var item_btn = convertView!!.findViewById<Button>(R.id.search_item)
         item_btn.text = list[p0].search
         item_btn.setOnClickListener {
-
+            replaceFragment(WordFragment())
         }
         return convertView
     }
