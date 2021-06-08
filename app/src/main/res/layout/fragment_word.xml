@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
     <ImageView
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:src="@drawable/hello"
-        >
+        android:id="@+id/word_img"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/pado"
+        />
 
-    </ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오른 주먹의 1·5지를 펴서 구부려 입으로 약간 기울여 올린 다음, 손등이 위로 향하게 편 왼 손등을 오른 주먹을 펴면서 바닥으로 스치며 위로 올리다가 내린다."
 
-</RelativeLayout>
+        />
+
+</LinearLayout>

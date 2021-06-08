@@ -4,7 +4,9 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
 import android.os.*
 import android.provider.MediaStore
 import android.util.Log
@@ -14,13 +16,26 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.signlanguagetranslator.utils.AudioWriterPCM
 import com.naver.speech.clientapi.*
+import com.unity3d.player.UnityPlayerActivity
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.DataOutputStream
+import java.io.InputStream
+import java.io.InputStreamReader
 import java.lang.ref.WeakReference
+import java.net.HttpURLConnection
+import java.net.MalformedURLException
+import java.net.URL
 
 class STTFragment: Fragment() {
+    private val IP_ADDRESS = "http://643caf642173.ngrok.io/items/5?q="
     private var CLIENT_ID = "346755u9ep"
     private lateinit var naverRecognizer: NaverRecognizer
     private lateinit var handler: RecognitionHandler
@@ -51,12 +66,15 @@ class STTFragment: Fragment() {
                 var speechRecognitionResult: SpeechRecognitionResult = msg.obj as SpeechRecognitionResult
                 var results = speechRecognitionResult.results
                 var strBuf = StringBuilder()
-                for(result in results){
-                    strBuf.append(result)
-                    strBuf.append("\n")
-                }
+
+                strBuf.append(results[0])
+                strBuf.append("\n")
+
                 result = strBuf.toString()
                 txtResult.setText(result)
+                var task: STTFragment.PostData = PostData()
+                task.execute(IP_ADDRESS+result)
+                startActivity(Intent(context, UnityPlayerActivity::class.java))
             }
             //인식 오류가 발생하는 경우
             R.id.recognitionError->{
@@ -242,6 +260,91 @@ class STTFragment: Fragment() {
             var msg = Message.obtain(mHandler, R.id.endPointDetectTypeSelected, epdType)
             msg.sendToTarget()
         }
+
+    }
+
+    inner private class PostData() : AsyncTask<String?, Void, String?>() {
+        //lateinit var progressDialog: ProgressDialog
+        var errorMessage: String = "Failed!"
+
+        constructor(parcel: Parcel) : this() {
+            errorMessage = parcel.readString().toString()
+        }
+
+        protected override fun onPreExecute(){
+            super.onPreExecute()
+        }
+
+        protected override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+
+            if(result == null){
+
+            }
+            else{
+                if(result!=""){
+
+                }
+            }
+        }
+
+        @RequiresApi(Build.VERSION_CODES.KITKAT)
+        override fun doInBackground(vararg p0: String?): String? {
+            var serverURL: String? = p0[0]
+
+            try{
+                val url: URL = URL(serverURL)
+                val httpURLConnection: HttpURLConnection = url.openConnection() as HttpURLConnection
+
+                httpURLConnection.readTimeout = 5000
+                httpURLConnection.connectTimeout = 5000
+                httpURLConnection.requestMethod = "GET"
+                httpURLConnection.doInput = true
+                //httpURLConnection.setRequestProperty("Content-Type","application/json")
+                httpURLConnection.connect()
+
+                //val outputStream = DataOutputStream(httpURLConnection.outputStream)
+                //outputStream.flush()
+//                outputStream.close()
+
+                var responseStatusCode: Int = httpURLConnection.responseCode
+                Log.d("Test", "response code - " + responseStatusCode)
+
+                val inputStream: InputStream
+                if(responseStatusCode == HttpURLConnection.HTTP_OK){
+                    inputStream = httpURLConnection.inputStream
+                }
+                else{
+                    inputStream = httpURLConnection.errorStream
+                }
+
+                val inputStreamReader: InputStreamReader = InputStreamReader(inputStream,"UTF-8")
+                val bufferedReader: BufferedReader = BufferedReader(inputStreamReader)
+
+                val sb = StringBuilder()
+                var line: String? = null
+
+                line = bufferedReader.readLine()
+                while(line != null){
+                    sb.append(line)
+                    line = bufferedReader.readLine()
+                }
+
+                bufferedReader.close()
+
+                return sb.toString().trim()
+            }catch(e:MalformedURLException){
+                Log.d("Error",e.toString())
+                return null
+            } catch(e: Exception){
+                Log.d("Test","GetData : Error ",e)
+                errorMessage = e.toString()
+                Log.d("Test",errorMessage)
+                return null
+            }
+        }
+
+
 
     }
 }

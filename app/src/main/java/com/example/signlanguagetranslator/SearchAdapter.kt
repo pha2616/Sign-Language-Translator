@@ -2,6 +2,7 @@ package com.example.signlanguagetranslator
 
 import android.app.Activity
 import android.content.Context
+import android.os.Bundle
 import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
