@@ -75,6 +75,7 @@ class STTFragment: Fragment() {
                 var task: STTFragment.PostData = PostData()
                 task.execute(IP_ADDRESS+result)
                 startActivity(Intent(context, UnityPlayerActivity::class.java))
+
             }
             //인식 오류가 발생하는 경우
             R.id.recognitionError->{

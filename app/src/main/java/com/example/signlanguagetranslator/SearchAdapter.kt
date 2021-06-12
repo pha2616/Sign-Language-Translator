@@ -21,6 +21,7 @@ class SearchAdapter(list: List<SearchList>, context: Context): BaseAdapter() {
     private lateinit var context: Context
     private lateinit var list: List<SearchList>
     private lateinit var inflate: LayoutInflater
+    private var bundle = Bundle()
 
     init {
         this.list = list
@@ -33,6 +34,7 @@ class SearchAdapter(list: List<SearchList>, context: Context): BaseAdapter() {
         var item_btn = convertView!!.findViewById<Button>(R.id.search_item)
         item_btn.text = list[p0].search
         item_btn.setOnClickListener {
+            bundle.putString("word",item_btn.text.toString())
             replaceFragment(WordFragment())
         }
         return convertView
@@ -53,6 +55,7 @@ class SearchAdapter(list: List<SearchList>, context: Context): BaseAdapter() {
     private fun replaceFragment(fragment: Fragment){
         val fragmentTransaction: FragmentTransaction = (context as AppCompatActivity).supportFragmentManager!!.beginTransaction()
         fragmentTransaction.replace(R.id.main_content, fragment)
+        fragment.arguments = bundle
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
