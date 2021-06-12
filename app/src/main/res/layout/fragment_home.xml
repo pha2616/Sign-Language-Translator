@@ -6,6 +6,13 @@
     android:layout_height="match_parent">
 
 
+    <ImageView
+        android:layout_height="50dp"
+        android:layout_width="50dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/sign_language"
+        />
 
     <RelativeLayout
         android:layout_width="350dp"
